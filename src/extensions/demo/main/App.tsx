@@ -50,7 +50,7 @@ function App() {
           <TableHeader>
             <TableRow>
               <TableHead className="w-[100px]">SKU</TableHead>
-              <TableHead>Stock1</TableHead>
+              <TableHead>Stock</TableHead>
               <TableHead>Price</TableHead>
               <TableHead className="w-[100px]">Size</TableHead>
             </TableRow>
