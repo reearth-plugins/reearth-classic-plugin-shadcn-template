@@ -14,7 +14,7 @@ reearth.on("message", (msg: { action: string; payload?: unknown }) => {
         lng: 139.75584459383325,
         height: 5000,
       },
-      { duration: 1 }
+      { duration: 1 },
     );
   }
 });

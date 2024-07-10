@@ -46,7 +46,6 @@ extensions:
               title: Primary color
               type: string
               ui: color
-
 ```
 
 As shown, it contains a single extension `demo` of type `widget`, with a schema that includes a group `appearance` and a field `primary_color`.
@@ -54,45 +53,45 @@ As shown, it contains a single extension `demo` of type `widget`, with a schema 
 Then, review the source code of the plugin:
 
 ```js
-- src
-  - extensions
-    - demo // Folder for this extension, named after the extension ID. If the plugin has multiple extensions, there will be multiple folders alongside 'demo'.
-      - main // The UI project for the main view. If the extension has multiple UIs, there will be multiple folders alongside this. Each UI folder is a typical SPA project.
-      - demo.ts // The extension script.
-  - shared // Shared components for all UIs, typically ShadCN components and utilities.
+-src -
+  extensions -
+  demo - // Folder for this extension, named after the extension ID. If the plugin has multiple extensions, there will be multiple folders alongside 'demo'.
+  main - // The UI project for the main view. If the extension has multiple UIs, there will be multiple folders alongside this. Each UI folder is a typical SPA project.
+  demo.ts - // The extension script.
+  shared; // Shared components for all UIs, typically ShadCN components and utilities.
 ```
 
 ## Scripts
 
 Refer to the scripts in `package.json`. Here are explanations for some of them:
 
-``` zsh
+```zsh
 yarn dev:demo:main
 ```
 
 Starts the development server for the `main` UI project of the `demo` extension.
 Ensure you check the environment variables being passed in so you can add your own scripts for different UI projects of different extensions.
 
-``` zsh
+```zsh
 yarn build:demo:main
 ```
 
 Builds the `main` UI project of the `demo` extension to `dist-ui/demo/main`.
 
-``` zsh
+```zsh
 yarn build:demo
 ```
 
 Builds the `demo` extension to `dist`. The `reearth.yml` file will also be copied to `dist`.
 
-``` zsh
+```zsh
 yarn build
 ```
 
 Builds the entire plugin (all extensions to `dist`), generating a zip file in the `package` folder.
 Note that `README.md` and `LICENSE` will be included in the zip. Update this script to include build commands for additional extensions as needed.
 
-``` zsh
+```zsh
 yarn preview
 ```
 
@@ -120,18 +119,18 @@ We are working on adding a new feature to Re:Earth Classic to improve the develo
    - Update the plugin code. You can test with the demo.
 1. Run `dev-build`:
    - Execute `yarn dev-build:demo:main`. Ensure the scripts are updated according to the current demo. This will:
-      - Start a dev server for the UI project as usual (you might not use this often).
-      - Automatically build the UI upon edits.
-      - Automatically build the extension.
-      - Start a preview server at `http://localhost:5005`.
+     - Start a dev server for the UI project as usual (you might not use this often).
+     - Automatically build the UI upon edits.
+     - Automatically build the extension.
+     - Start a preview server at `http://localhost:5005`.
 2. Set environment variables in the Re:Earth Classic front-end project: `REEARTH_WEB_DEV_PLUGIN_URLS='["http://localhost:5005"]'`. The server will automatically restart after .env changes.
 3. Done. Now Re:Earth Classic will offer two buttons in the editor header:
    - `Install Dev Plugins`
-      - This fetches plugin files from the plugin preview, automatically zips, and installs them.
-      - Click this only when initially setting up and after modifying `reearth.yml`.
+     - This fetches plugin files from the plugin preview, automatically zips, and installs them.
+     - Click this only when initially setting up and after modifying `reearth.yml`.
    - `Reload Dev Plugin Extensions`
-      - This reloads all extensions from the plugin preview.
-      - Only the plugin reloads, which is much faster than reloading the entire page.
+     - This reloads all extensions from the plugin preview.
+     - Only the plugin reloads, which is much faster than reloading the entire page.
 
 ### Summary
 

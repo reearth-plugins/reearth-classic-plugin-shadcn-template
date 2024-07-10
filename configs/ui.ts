@@ -26,7 +26,6 @@ export default defineConfig({
     serverHeaders(),
     viteSingleFile(),
     cdn({
-      // Note: we didn't specify the versions here.
       modules: ["react", "react-dom"],
     }),
   ],

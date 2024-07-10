@@ -26,7 +26,7 @@ export default defineConfig({
         __dirname,
         "../src/extensions",
         extensionName,
-        `${extensionName}.ts`
+        `${extensionName}.ts`,
       ),
       name: `${extensionName}`,
       fileName: () => `${extensionName}.js`,
