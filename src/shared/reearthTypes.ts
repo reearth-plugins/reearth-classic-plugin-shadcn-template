@@ -31,15 +31,15 @@ export type Reearth = {
   readonly clientStorage: ClientStorage;
   readonly on: <T extends keyof ReearthEventType>(
     type: T,
-    callback: (...args: ReearthEventType[T]) => void
+    callback: (...args: ReearthEventType[T]) => void,
   ) => void;
   readonly off: <T extends keyof ReearthEventType>(
     type: T,
-    callback: (...args: ReearthEventType[T]) => void
+    callback: (...args: ReearthEventType[T]) => void,
   ) => void;
   readonly once: <T extends keyof ReearthEventType>(
     type: T,
-    callback: (...args: ReearthEventType[T]) => void
+    callback: (...args: ReearthEventType[T]) => void,
   ) => void;
 };
 
@@ -132,12 +132,12 @@ export type Scene = {
   readonly overrideProperty: (property: any) => void;
   readonly captureScreen: (
     type?: string,
-    encoderOptions?: number
+    encoderOptions?: number,
   ) => string | undefined;
   readonly getLocationFromScreen: (
     x: number,
     y: number,
-    withTerrain?: boolean
+    withTerrain?: boolean,
   ) => LatLngHeight | undefined;
 };
 
@@ -159,21 +159,21 @@ export type Layers = {
   readonly findByTags: (...tagIds: string[]) => Layer[];
   readonly findByTagLabels: (...tagLabels: string[]) => Layer[];
   readonly find: (
-    fn: (layer: Layer, index: number, parents: Layer[]) => boolean
+    fn: (layer: Layer, index: number, parents: Layer[]) => boolean,
   ) => Layer | undefined;
   readonly findAll: (
-    fn: (layer: Layer, index: number, parents: Layer[]) => boolean
+    fn: (layer: Layer, index: number, parents: Layer[]) => boolean,
   ) => Layer[];
   readonly walk: <T>(
     // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
-    fn: (layer: Layer, index: number, parents: Layer[]) => T | void
+    fn: (layer: Layer, index: number, parents: Layer[]) => T | void,
   ) => T | undefined;
   readonly isLayer: (obj: any) => obj is Layer;
   readonly overrideProperty: (id: string, property: any) => void;
   readonly add: (
     layer: Layer,
     parentId?: string,
-    creator?: string
+    creator?: string,
   ) => string | undefined;
 };
 
@@ -304,7 +304,7 @@ export type UI = {
       height?: number | string;
       /** Override whether the iframe is extended. This option is only available for widgets on an extendable area on the widget align system. */
       extended?: boolean;
-    }
+    },
   ) => void;
   /**
    * Sends a message to the iframe's window shown by the show method. Sent data will be automatically encoded as JSON and restored in the iframe's window. So any object that cannot be serialized to JSON will be ignored.
@@ -321,7 +321,7 @@ export type UI = {
     /** Height of the iframe of the widget. This field is only available for widgets that are not vertically extended. */
     height: string | number | undefined,
     /** Overrides whether the iframe is extended. This option is only available for widgets on an extendable area on the widget align system. */
-    extended?: boolean | undefined
+    extended?: boolean | undefined,
   ) => void;
   readonly close: () => void;
 };
@@ -333,7 +333,7 @@ export type Modal = {
       width?: number | string;
       height?: number | string;
       background?: string;
-    }
+    },
   ) => void;
   readonly postMessage: (message: any) => void;
   readonly update: (options: {
@@ -374,7 +374,7 @@ export type Popup = {
       height?: number | string;
       position?: PopupPosition;
       offset?: PopupOffset;
-    }
+    },
   ) => void;
   readonly postMessage: (message: any) => void;
   readonly update: (options: {
@@ -424,12 +424,12 @@ export type Camera = {
   /** Moves the camera position to the specified destination. */
   readonly flyTo: (
     destination: FlyToDestination,
-    options?: CameraOptions
+    options?: CameraOptions,
   ) => void;
   /** Moves the camera position to look at the specified destination. */
   readonly lookAt: (
     destination: LookAtDestination,
-    options?: CameraOptions
+    options?: CameraOptions,
   ) => void;
   /** Rotate the camera around the center of earth. */
   readonly rotateRight: (radian: number) => void;
@@ -448,7 +448,7 @@ export type Camera = {
   readonly flyToGround: (
     destination: FlyToDestination,
     options?: CameraOptions,
-    offset?: number
+    offset?: number,
   ) => void;
 };
 
