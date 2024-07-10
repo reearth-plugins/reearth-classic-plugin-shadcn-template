@@ -4,13 +4,6 @@ import config from "eslint-config-reearth";
 export default [
   ...config,
   {
-    ignores: [
-      "node_modules/",
-      "dist/",
-      "dist-ui/",
-      "package/",
-      "public/",
-      "README.md",
-    ],
+    ignores: ["node_modules/", "dist/", "dist-ui/", "package/", "public/"],
   },
 ];
