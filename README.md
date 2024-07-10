@@ -13,16 +13,6 @@ The structure of a Re:Earth Classic Plugin aligns with the definitions in `reear
   - `main` refers to the primary view of the extension, typically a widget panel or block panel.
   - You can prepare multiple UIs for `main`, `modal`, and `popup`. Each UI will be rendered in a sandboxed iframe, effectively acting as an independent Single Page Application (SPA).
 
-## Project Structure
-
-- `src/`: Source code of the plugin.
-- `public/`: Static files. For a Re:Earth Classic Plugin, the only required static file is `reearth.yml`. Always provide this YAML file.
-- `dist/`: Output directory of the plugin build. It typically contains bundled JavaScript files for each extension and the `reearth.yml` file.
-- `dist-ui/`: Output directory for the UI build. This is an intermediate product of plugin development. Extension scripts will use the built UI files in this directory.
-- `package/`: Directory for packaging the plugin into a zip file.
-- `configs/`: Vite configuration files for both extensions and UI.
-- `scripts/`: Scripts for building and packaging the plugin.
-
 ## Demo
 
 This template includes a simple demo of a plugin with a widget extension. The demo helps illustrate the file structure.
@@ -48,17 +38,33 @@ extensions:
               ui: color
 ```
 
-As shown, it contains a single extension `demo` of type `widget`, with a schema that includes a group `appearance` and a field `primary_color`.
+As shown, it contains a single extension `demo` of type `widget`.
 
-Then, review the source code of the plugin:
+Then, review the structure of the project:
 
-```js
--src -
-  extensions -
-  demo - // Folder for this extension, named after the extension ID. If the plugin has multiple extensions, there will be multiple folders alongside 'demo'.
-  main - // The UI project for the main view. If the extension has multiple UIs, there will be multiple folders alongside this. Each UI folder is a typical SPA project.
-  demo.ts - // The extension script.
-  shared; // Shared components for all UIs, typically ShadCN components and utilities.
+```planttext
+my-project/
+├── node_modules/
+├── public/
+│   └── reearth.yml             // Plugin definition
+├── src/
+│   ├── extensions/
+│   │   └── demo/               // Extension folder, naming by extension ID
+│   │       ├── main/           // UI project for the main view
+│   │       └── demo.ts         // Extension script
+│   └── shared/
+│       ├── components/         // Shared components of ShadCN
+│       ├── lib/                // Shared lib of ShanCN
+│       ├── global.css          
+│       ├── reearthTypes.ts     // Shared Re:Earth types
+│       └── utils.ts
+├── dist/                       // Output directory of the plugin build
+├── dist-ui/                    // Output directory for the UI build
+├── package/                    // Directory for packaging the plugin into a zip file
+├── configs/                    // Vite configuration files for both extensions and UI
+├── scripts/
+├── package.json
+└── README.md
 ```
 
 ## Scripts
