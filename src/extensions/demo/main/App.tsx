@@ -1,5 +1,4 @@
 import { ArrowRightCircle } from "lucide-react";
-import { useCallback } from "react";
 
 import { Button } from "@/shared/components/ui/button";
 import {
@@ -20,20 +19,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/shared/components/ui/table";
-import {
-  ToggleGroup,
-  ToggleGroupItem,
-} from "@/shared/components/ui/toggle-group";
-import { postMsg } from "@/shared/utils";
 
-import useInit from "./hooks/useInit";
+import useHooks from "./hooks";
 
 function App() {
-  useInit();
-
-  const handleFlyToTokyo = useCallback(() => {
-    postMsg("flyToTokyo");
-  }, []);
+  const { mouseLocation, handleFlyToTokyo } = useHooks();
 
   // This is a simple example of a UI from ShadCN
   // https://ui.shadcn.com/blocks
@@ -49,77 +39,47 @@ function App() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[100px]">SKU</TableHead>
-              <TableHead>Stock</TableHead>
-              <TableHead>Price</TableHead>
-              <TableHead className="w-[100px]">Size</TableHead>
+              <TableHead className="w-[100px]" />
+              <TableHead>Longitude</TableHead>
+              <TableHead>Latitude</TableHead>
+              <TableHead>Height</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             <TableRow>
-              <TableCell className="font-semibold">GGPC-001</TableCell>
+              <TableCell className="font-semibold">Mouse</TableCell>
               <TableCell>
-                <Label htmlFor="stock-1" className="sr-only">
-                  Stock
+                <Label htmlFor="mouse-lng" className="sr-only">
+                  Longitude
                 </Label>
-                <Input id="stock-1" type="number" defaultValue="100" />
+                <Input
+                  id="mouse-lng"
+                  type="number"
+                  disabled
+                  value={mouseLocation.lng}
+                />
               </TableCell>
               <TableCell>
-                <Label htmlFor="price-1" className="sr-only">
-                  Price
+                <Label htmlFor="mouse-lat" className="sr-only">
+                  Latitude
                 </Label>
-                <Input id="price-1" type="number" defaultValue="99.99" />
+                <Input
+                  id="mouse-lat"
+                  type="number"
+                  disabled
+                  value={mouseLocation.lat}
+                />
               </TableCell>
               <TableCell>
-                <ToggleGroup type="single" defaultValue="s" variant="outline">
-                  <ToggleGroupItem value="s">S</ToggleGroupItem>
-                  <ToggleGroupItem value="m">M</ToggleGroupItem>
-                  <ToggleGroupItem value="l">L</ToggleGroupItem>
-                </ToggleGroup>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell className="font-semibold">GGPC-002</TableCell>
-              <TableCell>
-                <Label htmlFor="stock-2" className="sr-only">
-                  Stock
+                <Label htmlFor="mouse-height" className="sr-only">
+                  Height
                 </Label>
-                <Input id="stock-2" type="number" defaultValue="143" />
-              </TableCell>
-              <TableCell>
-                <Label htmlFor="price-2" className="sr-only">
-                  Price
-                </Label>
-                <Input id="price-2" type="number" defaultValue="99.99" />
-              </TableCell>
-              <TableCell>
-                <ToggleGroup type="single" defaultValue="m" variant="outline">
-                  <ToggleGroupItem value="s">S</ToggleGroupItem>
-                  <ToggleGroupItem value="m">M</ToggleGroupItem>
-                  <ToggleGroupItem value="l">L</ToggleGroupItem>
-                </ToggleGroup>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell className="font-semibold">GGPC-003</TableCell>
-              <TableCell>
-                <Label htmlFor="stock-3" className="sr-only">
-                  Stock
-                </Label>
-                <Input id="stock-3" type="number" defaultValue="32" />
-              </TableCell>
-              <TableCell>
-                <Label htmlFor="price-3" className="sr-only">
-                  Stock
-                </Label>
-                <Input id="price-3" type="number" defaultValue="99.99" />
-              </TableCell>
-              <TableCell>
-                <ToggleGroup type="single" defaultValue="s" variant="outline">
-                  <ToggleGroupItem value="s">S</ToggleGroupItem>
-                  <ToggleGroupItem value="m">M</ToggleGroupItem>
-                  <ToggleGroupItem value="l">L</ToggleGroupItem>
-                </ToggleGroup>
+                <Input
+                  id="mouse-height"
+                  type="number"
+                  disabled
+                  value={mouseLocation.height}
+                />
               </TableCell>
             </TableRow>
           </TableBody>
